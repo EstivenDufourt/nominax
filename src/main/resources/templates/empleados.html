@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/myScript.js}"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Lista de empleados</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Puesto</th>
+      <th>Salario</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="empleado : ${empleados}">
+      <td th:text="${empleado.id}"></td>
+      <td th:text="${empleado.nombre}"></td>
+      <td th:text="${empleado.apellido}"></td>
+      <td th:text="${empleado.puesto}"></td>
+      <td th:text="${empleado.salario}"></td>
+      <td>
+        <a th:href="@{/empleados/editar/{id}(id=${empleado.id})}">Editar</a>
+        <a th:href="@{/empleados/eliminar/{id}(id=${empleado.id})}" onclick="confirm('¿Está seguro que desea eliminar este empleado?')">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary" th:href="@{/empleados/registro}">Agregar nuevo empleado</a>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
